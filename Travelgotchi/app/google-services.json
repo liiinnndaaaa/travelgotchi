@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "92829310345",
+    "firebase_url": "https://travelgotchi-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "travelgotchi",
     "storage_bucket": "travelgotchi.appspot.com"
   },
