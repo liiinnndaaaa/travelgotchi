@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.lindotschka.travelgotchi.R
 import com.lindotschka.travelgotchi.adapter.CountriesAdapter
+import com.lindotschka.travelgotchi.firebase.getCountriesData
 import com.lindotschka.travelgotchi.model.CountryData
 
 class HomeFragment : Fragment() {
@@ -23,7 +20,7 @@ class HomeFragment : Fragment() {
     private lateinit var mDataBase: DatabaseReference
     private lateinit var countryList: ArrayList<CountryData>
     private lateinit var mAdapter: CountriesAdapter
-    private lateinit var recyclerView1: RecyclerView
+    private lateinit var europeView: RecyclerView
     private lateinit var recyclerView2: RecyclerView
     private lateinit var recyclerView3: RecyclerView
 
@@ -41,13 +38,18 @@ class HomeFragment : Fragment() {
         countryList = ArrayList()
         mAdapter = CountriesAdapter(this, countryList)
 
-        recyclerView1 = view.findViewById(R.id.recyclerView1)
-        recyclerView1.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView1.setHasFixedSize(true)
-        recyclerView1.adapter = mAdapter
+        europeView = view.findViewById(R.id.europeView)
+        europeView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL, // Horizontal ausgerichtet
+            false
+        )
+        europeView.setHasFixedSize(true)
+        europeView.adapter = mAdapter
 
         /**get Data firebase*/
-        getCountriesData()
+        mDataBase = FirebaseDatabase.getInstance().getReference("countries")
+        getCountriesData(mDataBase,countryList,mAdapter,requireContext(),"europe")
 
         // RecyclerView 2 initialisieren
         recyclerView2 = view.findViewById(R.id.recyclerView2)
@@ -60,36 +62,6 @@ class HomeFragment : Fragment() {
         recyclerView3.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView3.adapter = createDummyAdapter()
-    }
-
-    private fun getCountriesData() {
-        mDataBase = FirebaseDatabase.getInstance().getReference("continents/europe/countries")
-        mDataBase.addValueEventListener(object:ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    countryList.clear()
-                    for (countrySnapshot in snapshot.children) {
-                        // Name und Image-URL aus jedem Land extrahieren
-                        val name = countrySnapshot.child("name").value as? String
-                        val imageUrl = countrySnapshot.child("imageUrl").value as? String
-                        if (name != null && imageUrl != null) {
-                            val country = CountryData(
-                                name = name,
-                                imageUrl = imageUrl
-                            )
-                            countryList.add(country)
-                        }
-                    }
-                    mAdapter.notifyDataSetChanged()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(),
-                    error.message,Toast.LENGTH_SHORT).show()
-            }
-
-        })
     }
 
     private fun createDummyAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {

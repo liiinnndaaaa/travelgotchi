@@ -34,7 +34,7 @@
 
         <!-- RecyclerView für horizontale Bilderreihe -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView1"
+            android:id="@+id/europeView"
             tools:listitem="@layout/item_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
