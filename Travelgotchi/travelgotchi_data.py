@@ -49,6 +49,18 @@ countries = {
 					"culturalSpecials": ["pending"],
 					"events": ["pending"]
 				}
+    },
+    "mexico": {
+            	"name": "Mexiko",
+            	"imageUrl": "https://natuerlich.reisen/wp-content/uploads/2023/02/Zocalo-Square-und-Mexico-City-Cathedral-Mexiko-Stadt-Mexiko.jpg",
+  				"continent": "northamerica",
+				"infos": {
+					"geographicalData": "pending",
+					"essenskultur": ["Tacos", "Burritos"],
+					"apps": ["pending"],
+					"culturalSpecials": ["pending"],
+					"events": ["pending"]
+				}
     }
 }
 

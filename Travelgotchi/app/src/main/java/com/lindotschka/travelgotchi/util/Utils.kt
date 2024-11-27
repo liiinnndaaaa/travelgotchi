@@ -1,8 +1,7 @@
-package com.lindotschka.travelgotchi.firebase
+package com.lindotschka.travelgotchi.util
 
 import android.content.Context
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -22,7 +21,7 @@ fun getCountriesData(
     upperClass: String,
     onComplete: (List<CountryData>) -> Unit
 ) {
-    mDataBase.addListenerForSingleValueEvent(object:ValueEventListener{
+    mDataBase.addListenerForSingleValueEvent(object: ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()){
                 countryList.clear()
@@ -63,7 +62,7 @@ fun getCountriesData(
 
         override fun onCancelled(error: DatabaseError) {
             Toast.makeText(context,
-                error.message,Toast.LENGTH_SHORT).show()
+                error.message, Toast.LENGTH_SHORT).show()
         }
 
     })

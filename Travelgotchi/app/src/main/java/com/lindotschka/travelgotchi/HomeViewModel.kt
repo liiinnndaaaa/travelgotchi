@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DatabaseReference
-import com.lindotschka.travelgotchi.firebase.getCountriesData
 import com.lindotschka.travelgotchi.model.CountryData
-import com.lindotschka.travelgotchi.model.CountryInfo
+import com.lindotschka.travelgotchi.util.getCountriesData
 
 class HomeViewModel : ViewModel() {
 
@@ -16,6 +15,9 @@ class HomeViewModel : ViewModel() {
 
     private val _asiaCountries = MutableLiveData<List<CountryData>>()
     val asiaCountries: LiveData<List<CountryData>> get() = _asiaCountries
+
+    private val _northamericaCountries = MutableLiveData<List<CountryData>>()
+    val northamericaCountries: LiveData<List<CountryData>> get() = _northamericaCountries
 
     fun loadCountries(mDataBase: DatabaseReference,
                       context: Context,
@@ -26,6 +28,7 @@ class HomeViewModel : ViewModel() {
             when (continent) {
                 "europe" -> _europeCountries.value = countryList
                 "asia" -> _asiaCountries.value = countryList
+                "northamerica" -> _northamericaCountries.value = countryList
             }
         }
     }

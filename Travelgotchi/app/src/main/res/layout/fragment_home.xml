@@ -19,7 +19,7 @@
             android:layout_marginBottom="2dp"
             android:text="Europa"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <!-- RecyclerView für horizontale Bilderreihe -->
@@ -38,7 +38,7 @@
             android:layout_marginBottom="2dp"
             android:text="Asien"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <!-- RecyclerView für horizontale Bilderreihe -->
@@ -56,15 +56,15 @@
             android:layout_marginBottom="2dp"
             android:text="Nordamerika"
             android:textColor="@color/black"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <!-- RecyclerView für horizontale Bilderreihe -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView3"
+            android:id="@+id/northamericaView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="40dp" />
     </LinearLayout>
 </ScrollView>
