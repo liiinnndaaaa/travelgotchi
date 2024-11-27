@@ -12,20 +12,10 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/general"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="54dp"
-            android:layout_marginBottom="24dp"
-            android:text="Allgemeines"
-            android:textColor="@color/black"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/europe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
             android:layout_marginBottom="2dp"
             android:text="Europa"
             android:textColor="@color/black"
@@ -45,7 +35,7 @@
             android:id="@+id/asia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="2dp"
             android:text="Asien"
             android:textColor="@color/black"
             android:textSize="24dp"
@@ -53,16 +43,17 @@
 
         <!-- RecyclerView für horizontale Bilderreihe -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/asiaView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:id="@+id/northamerica"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="2dp"
             android:text="Nordamerika"
             android:textColor="@color/black"
             android:textSize="24dp"
@@ -73,6 +64,7 @@
             android:id="@+id/recyclerView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="16dp" />
     </LinearLayout>
 </ScrollView>

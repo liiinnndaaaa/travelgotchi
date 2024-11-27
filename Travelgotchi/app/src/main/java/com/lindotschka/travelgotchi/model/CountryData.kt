@@ -1,8 +1,16 @@
 package com.lindotschka.travelgotchi.model
 data class CountryData(
-    var name: String? = null,
-    var imageUrl: String? = null,
-    var continent: String? =null,
-    var infos: String? = null,
-    var cities: String? = null
+    val name: String? = null,
+    val imageUrl: String? = null,
+    val continent: String? =null,
+    val infos: CountryInfo? = null,
+    val cities: List<String>? = null
+)
+
+data class CountryInfo(
+    val geographicalData: String? = null,
+    val foodCulture: List<String>? = null,
+    val apps: List<String>? = null,
+    val culturalSpecials: List<String>? = null,
+    val events: List<String>? = null
 )

@@ -7,6 +7,7 @@
         android:icon="@drawable/ic_add"
         android:id="@+id/add"
         app:showAsAction="ifRoom"
+        app:tint="@color/white"
         />
 
     <item
@@ -14,5 +15,6 @@
         android:icon="@drawable/ic_message"
         android:id="@+id/message"
         app:showAsAction="ifRoom"
+        app:tint="@color/white"
         />
 </menu>
