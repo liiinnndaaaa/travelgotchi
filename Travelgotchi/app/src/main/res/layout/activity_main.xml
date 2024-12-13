@@ -19,10 +19,9 @@
                     style="@style/Widget.MaterialComponents.Toolbar.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/teal_200"
+                    android:background="@color/black"
                     app:menu="@menu/upper_mnu"
                     app:navigationIcon="@drawable/ic_search"
-                    app:tint="@color/white"
                     app:title="Travelgotchi"
                     app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>

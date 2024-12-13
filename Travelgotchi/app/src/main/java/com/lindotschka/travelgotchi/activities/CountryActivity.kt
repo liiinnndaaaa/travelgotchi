@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,8 @@ import com.lindotschka.travelgotchi.model.CountryData
 import com.lindotschka.travelgotchi.util.getCitiesData
 
 class CountryActivity : AppCompatActivity() {
+    private lateinit var toolbar: Toolbar
+
     private lateinit var countryName: String
     private lateinit var countryThumb: String
     private lateinit var citiesAdapter: CitiesAdapter
@@ -37,6 +40,14 @@ class CountryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCountryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        toolbar = findViewById(R.id.toolbar)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed();
+        }
 
         getCountryInformation()
 
