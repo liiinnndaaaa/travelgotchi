@@ -2,7 +2,7 @@ import json
 
 # Basisdaten: Länder enthalten KEINE explizite Liste von Städten mehr.
 countries = {
-    "germany": {
+    "Deutschland": {
         "name": "Deutschland",
         "imageUrl": "https://www.opengovpartnership.org/wp-content/uploads/2017/04/Germany.jpg",
         "continent": "europe",
@@ -14,7 +14,7 @@ countries = {
             "events": ["Oktoberfest", "Stocherkahnrennen", "Weihnachtsmarkt"]
         }
     },
-    "france": {
+    "Frankreich": {
         "name": "Frankreich",
         "imageUrl": "https://www.vispronet.de/blog/wp-content/uploads/beitragsbild-flagge-frankreich-1-jpg-webp.webp",
         "continent": "europe",
@@ -26,7 +26,7 @@ countries = {
             "events": ["pending"]
         }
     },
-    "japan": {
+    "Japan": {
         "name": "Japan",
         "imageUrl": "https://finanzmarktwelt.de/wp-content/uploads/2024/07/Bank-of-Japan-Zinserhoehung.-Savvapanf-Freepik.com_-scaled.jpg",
         "continent": "asia",
@@ -38,7 +38,7 @@ countries = {
             "events": ["Penis-Festival"]
         }
     },
-    "greece": {
+    "Griechenland": {
             	"name": "Griechenland",
             	"imageUrl": "https://www.reisereporter.de/resizer/v2/EUPPNMYCTVBCFL26A3ZXOWQV44.jpg?auth=343f7fa9bf9e439cb46c84c6327deb6806dded7995688faad15de387c2ecdbd0&quality=70&width=428&height=241&smart=true",
   				"continent": "europe",
@@ -50,7 +50,7 @@ countries = {
 					"events": ["pending"]
 				}
     },
-    "mexico": {
+    "Mexiko": {
             	"name": "Mexiko",
             	"imageUrl": "https://natuerlich.reisen/wp-content/uploads/2023/02/Zocalo-Square-und-Mexico-City-Cathedral-Mexiko-Stadt-Mexiko.jpg",
   				"continent": "northamerica",
@@ -66,10 +66,10 @@ countries = {
 
 # Städte enthalten eine Referenz auf ihr zugehöriges Land.
 cities = {
-    "berlin": {
+    "Berlin": {
         "name": "Berlin",
         "imageUrl": "https://www.germany.travel/media/redaktion/staedte_kultur_content/berlin/Berlin_Brandenburger_Tor_am_Pariser_Platz_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg",
-        "country": "germany",
+        "country": "Deutschland",
         "info": {
             "sights": ["Brandenburger-Tor", "Fernsehturm"],
             "discount_free_all": ["Museen am Anfang des Monats"],
@@ -82,10 +82,10 @@ cities = {
             "Apps": ["pending"]
         }
     },
-    "paris": {
+    "Paris": {
         "name": "Paris",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_Night.jpg",
-        "country": "france",
+        "country": "Frankreich",
         "info": {
             "sights": ["Eiffelturm", "Louvre"],
             "discount_free_all": ["Am ersten Sonntag im Monat sind viele Museen gratis"],

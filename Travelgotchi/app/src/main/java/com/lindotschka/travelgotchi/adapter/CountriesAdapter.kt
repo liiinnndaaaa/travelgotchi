@@ -9,12 +9,10 @@ import com.bumptech.glide.Glide
 import com.lindotschka.travelgotchi.R
 import com.lindotschka.travelgotchi.activities.CountryActivity
 import com.lindotschka.travelgotchi.databinding.ItemCountryBinding
-import com.lindotschka.travelgotchi.fragments.HomeFragment
 import com.lindotschka.travelgotchi.model.CountryData
 
 class CountriesAdapter(
-    var c: HomeFragment,
-    private var countryList:ArrayList<CountryData>,
+    private var countryList: ArrayList<CountryData>,
 ) :RecyclerView.Adapter<CountriesAdapter.CountryViewHolder>()
 
 {
@@ -25,7 +23,7 @@ class CountriesAdapter(
         const val COUNTRY_FOOD = "com.lindotschka.travelgotchi.adapter.foodCountry"
         const val COUNTRY_CULTURE = "com.lindotschka.travelgotchi.adapter.cultureCountry"
     }
-    inner class CountryViewHolder(var v:ItemCountryBinding): RecyclerView.ViewHolder(v.root){}
+    inner class CountryViewHolder(var v:ItemCountryBinding): RecyclerView.ViewHolder(v.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflter = LayoutInflater.from(parent.context)
@@ -46,6 +44,7 @@ class CountriesAdapter(
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countryList[position]
+        val city = country.cities ?: emptyList()
         val foodculture = country.infos?.foodCulture ?: emptyList()
         val culture = country.infos?.culturalSpecials ?: emptyList()
 
@@ -64,6 +63,7 @@ class CountriesAdapter(
             val intent = Intent(holder.itemView.context, CountryActivity::class.java)
             intent.putExtra(COUNTRY_NAME,country.name)
             intent.putExtra(COUNTRY_THUMB,country.imageUrl)
+
             intent.putExtra(COUNTRY_GEO,country.infos?.geographicalData)
             intent.putStringArrayListExtra(
                 COUNTRY_FOOD,

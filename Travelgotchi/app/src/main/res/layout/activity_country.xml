@@ -76,16 +76,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Städte"
-                    android:textStyle="bold"
-                    android:backgroundTint="@color/black"
-                    android:layout_marginTop="@dimen/_15ssp"
-                    android:layout_marginLeft="@dimen/_5sdp" />
-
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="Events"
                     android:textStyle="bold"
@@ -94,13 +85,13 @@
                     android:layout_marginLeft="@dimen/_10sdp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Apps"
-                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15ssp"
                     android:backgroundTint="@color/black"
-                    android:layout_marginLeft="@dimen/_10sdp" />
+                    android:text="Apps"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -133,12 +124,35 @@
                 android:textSize="@dimen/_13ssp" />
 
             <TextView
+                android:id="@+id/tv_cities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Städte:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/geo_info"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cityView"
+                tools:listitem="@layout/item_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_cities" />
+
+            <TextView
                 android:id="@+id/tv_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Esskultur:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/geo_info"
+                app:layout_constraintTop_toBottomOf="@id/cityView"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:textStyle="bold"
