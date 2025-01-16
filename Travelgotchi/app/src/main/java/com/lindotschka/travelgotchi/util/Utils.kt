@@ -1,9 +1,7 @@
 package com.lindotschka.travelgotchi.util
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -92,7 +90,7 @@ fun generateCountries(
     viewModel.loadCountries(database, context, continent)
 }
 
-fun getCitiesData(
+fun getCity(
     mDataBase: DatabaseReference,
     context: Context,
     upperClass: String,
@@ -109,16 +107,52 @@ fun getCitiesData(
                     val name = citySnapshot.child("name").value as? String
                     val imageUrl = citySnapshot.child("imageUrl").value as? String
                     val country = citySnapshot.child("country").value as? String
-                    val infosSnapshot = citySnapshot.child("info")
-                    val airport = citySnapshot.child("airport_to_city").getValue(object: GenericTypeIndicator<List<String>>() {})
-                    val infraSnapshot = citySnapshot.child("inner_city")
+
+                    if (name != null && imageUrl != null && country == upperClass) {
+                        val city = CityData(
+                            name = name,
+                            imageUrl = imageUrl,
+                            country = country
+                        )
+                        cityList.add(city)
+                    }
+                }
+                onComplete(cityList)
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Toast.makeText(context,
+                error.message, Toast.LENGTH_SHORT).show()
+        }
+
+    })
+}
+
+fun getCitiesData(
+    mDataBase: DatabaseReference,
+    context: Context,
+    onComplete: (CityData?) -> Unit
+) {
+
+    mDataBase.addListenerForSingleValueEvent(object: ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            if (snapshot.exists()){
+                    val name = snapshot.child("name").value as? String
+                    val imageUrl = snapshot.child("imageUrl").value as? String
+                    val country = snapshot.child("country").value as? String
+                    val infosSnapshot = snapshot.child("info")
+                    val airport = snapshot.child("airport_to_city").getValue(object: GenericTypeIndicator<List<String>>() {})
+                    val infraSnapshot = snapshot.child("inner_city")
+                    val area = snapshot.child("Umgebung").value as? List<String>
 
                     val infos = if (infosSnapshot.exists()) {
                         CityInfo(
                             sights = infosSnapshot.child("sights").getValue(object: GenericTypeIndicator<List<String>>() {}),
                             discount_all = infosSnapshot.child("discount_free_all").getValue(object : GenericTypeIndicator<List<String>>() {}),
-                            discount_special = infosSnapshot.child("Rabatte und kostenlos für bestimmte Personengruppen").getValue(object : GenericTypeIndicator<List<String>>() {}),
-                            early_booking = infosSnapshot.child("Unbedingt vorab buchen").getValue(object: GenericTypeIndicator<List<String>>() {})
+                            discount_special = infosSnapshot.child("discount_some").getValue(object : GenericTypeIndicator<List<String>>() {}),
+                            must_plan = infosSnapshot.child("must_plan").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            apps = infosSnapshot.child("Apps").getValue(object: GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
                         null
@@ -126,27 +160,28 @@ fun getCitiesData(
 
                     val infra = if (infraSnapshot.exists()) {
                         InfraCity(
-                            tickets = infraSnapshot.child("Ticketarten").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            apps = infraSnapshot.child("Apps").getValue(object: GenericTypeIndicator<List<String>>() {})
+                            transport1 = infraSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            transport2 = infraSnapshot.child("zu_Fuss").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            transport3 = infraSnapshot.child("mit_Fahrrad").getValue(object: GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
                         null
                     }
 
-                    if (name != null && imageUrl != null && country == upperClass) {
-                        val city = CityData(
+                    val city = if (name != null && imageUrl != null && country != null) {
+                        CityData(
                             name = name,
                             imageUrl = imageUrl,
                             country = country,
                             infos = infos,
                             airport_to_city = airport,
-                            inner_city = infra
+                            inner_city = infra,
+                            area_city = area
                         )
-                        cityList.add(city)
-                    }
+                    } else {
+                        null
                 }
-                Log.d("CityList", "Final city list: ${cityList.size}")
-                onComplete(cityList)
+                onComplete(city)
             }
         }
 

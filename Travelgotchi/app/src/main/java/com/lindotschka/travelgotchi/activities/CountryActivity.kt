@@ -2,24 +2,16 @@ package com.lindotschka.travelgotchi.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.lindotschka.travelgotchi.R
 import com.lindotschka.travelgotchi.adapter.CitiesAdapter
 import com.lindotschka.travelgotchi.adapter.CountriesAdapter
 import com.lindotschka.travelgotchi.databinding.ActivityCountryBinding
-import com.lindotschka.travelgotchi.model.CityData
-import com.lindotschka.travelgotchi.model.CountryData
-import com.lindotschka.travelgotchi.util.getCitiesData
+import com.lindotschka.travelgotchi.util.getCity
 
 class CountryActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -86,7 +78,7 @@ class CountryActivity : AppCompatActivity() {
         countryName = intent.getStringExtra(CountriesAdapter.COUNTRY_NAME)!!
         countryThumb = intent.getStringExtra(CountriesAdapter.COUNTRY_THUMB)!!
 
-        getCitiesData(database, this, countryName) { cityList ->
+        getCity(database, this, countryName) { cityList ->
             citiesAdapter.updateData(cityList)
         }
 

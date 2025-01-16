@@ -150,10 +150,13 @@
                 "discount_free_all": [
                     "Museen am Anfang des Monats"
                 ],
-                "Rabatte und kostenlos für bestimmte Personengruppen": [
+                "discount_some": [
                     "pending"
                 ],
-                "Unbedingt vorab buchen": [
+                "must_plan": [
+                    "pending"
+                ],
+                "Apps": [
                     "pending"
                 ]
             },
@@ -163,13 +166,19 @@
                 "Mit dem Taxi..."
             ],
             "inner_city": {
-                "Ticketarten": [
+                "Bus_Bahn": [
                     "pending"
                 ],
-                "Apps": [
+                "zu_Fuss": [
+                    "pending"
+                ],
+                "mit_Fahrrad": [
                     "pending"
                 ]
-            }
+            },
+            "Umgebung": [
+                "pending"
+            ]
         },
         "Paris": {
             "name": "Paris",
@@ -183,11 +192,15 @@
                 "discount_free_all": [
                     "Am ersten Sonntag im Monat sind viele Museen gratis"
                 ],
-                "Rabatte und kostenlos für bestimmte Personengruppen": [
+                "discount_some": [
                     "pending"
                 ],
-                "Unbedingt vorab buchen": [
+                "must_plan": [
                     "Eiffelturm"
+                ],
+                "Apps": [
+                    "RATP",
+                    "Citymapper"
                 ]
             },
             "airport_to_city": [
@@ -196,15 +209,20 @@
                 "Taxi"
             ],
             "inner_city": {
-                "Ticketarten": [
+                "Bus_Bahn": [
                     "T+ Tickets",
                     "Navigo Pass"
                 ],
-                "Apps": [
-                    "RATP",
-                    "Citymapper"
+                "zu_Fuss": [
+                    "pending"
+                ],
+                "mit_Fahrrad": [
+                    "pending"
                 ]
-            }
+            },
+            "Umgebung": [
+                "pending"
+            ]
         }
     }
 }

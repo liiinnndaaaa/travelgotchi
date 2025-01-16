@@ -1,6 +1,5 @@
 import json
 
-# Basisdaten: Länder enthalten KEINE explizite Liste von Städten mehr.
 countries = {
     "Deutschland": {
         "name": "Deutschland",
@@ -73,14 +72,17 @@ cities = {
         "info": {
             "sights": ["Brandenburger-Tor", "Fernsehturm"],
             "discount_free_all": ["Museen am Anfang des Monats"],
-            "Rabatte und kostenlos für bestimmte Personengruppen": ["pending"],
-            "Unbedingt vorab buchen": ["pending"]
+            "discount_some": ["pending"],
+            "must_plan": ["pending"],
+            "Apps": ["pending"]
         },
         "airport_to_city": ["Mit dem Bus...", "Mit der Bahn...", "Mit dem Taxi..."],
         "inner_city": {
-            "Ticketarten": ["pending"],
-            "Apps": ["pending"]
-        }
+            "Bus_Bahn": ["pending"],
+            "zu_Fuss": ["pending"],
+            "mit_Fahrrad": ["pending"]
+        },
+        "Umgebung": ["pending"]
     },
     "Paris": {
         "name": "Paris",
@@ -89,14 +91,17 @@ cities = {
         "info": {
             "sights": ["Eiffelturm", "Louvre"],
             "discount_free_all": ["Am ersten Sonntag im Monat sind viele Museen gratis"],
-            "Rabatte und kostenlos für bestimmte Personengruppen": ["pending"],
-            "Unbedingt vorab buchen": ["Eiffelturm"]
+            "discount_some": ["pending"],
+            "must_plan": ["Eiffelturm"],
+            "Apps": ["RATP", "Citymapper"]
         },
         "airport_to_city": ["RER B Zug", "Buslinien", "Taxi"],
         "inner_city": {
-            "Ticketarten": ["T+ Tickets", "Navigo Pass"],
-            "Apps": ["RATP", "Citymapper"]
-        }
+            "Bus_Bahn": ["T+ Tickets", "Navigo Pass"],
+            "zu_Fuss": ["pending"],
+            "mit_Fahrrad": ["pending"]
+        },
+        "Umgebung": ["pending"]
     }
 }
 

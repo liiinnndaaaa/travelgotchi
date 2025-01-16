@@ -44,7 +44,6 @@ class CountriesAdapter(
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countryList[position]
-        val city = country.cities ?: emptyList()
         val foodculture = country.infos?.foodCulture ?: emptyList()
         val culture = country.infos?.culturalSpecials ?: emptyList()
 
