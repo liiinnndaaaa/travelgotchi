@@ -23,7 +23,9 @@ class CitiesAdapter(
         const val CITY_THUMB = "com.lindotschka.travelgotchi.adapter.thumbCity"
         const val CITY_AIRPORT = "com.lindotschka.travelgotchi.adapter.airportCity"
         const val CITY_AREA = "com.lindotschka.travelgotchi.adapter.areaCity"
+
         const val CITY_SIGHTS = "com.lindotschka.travelgotchi.adapter.sightsCity"
+        const val CITY_ALL = "com.lindotschka.travelgotchi.adapter.allCity"
     }
 
     inner class CityViewHolder(var v:ItemCityBinding): RecyclerView.ViewHolder(v.root)
@@ -77,7 +79,11 @@ class CitiesAdapter(
 
                     intent.putStringArrayListExtra(
                         CITY_SIGHTS,
-                        ArrayList(cityData.infos?.sights ?: emptyList())
+                        ArrayList(cityData.info?.sights ?: emptyList())
+                    )
+                    intent.putStringArrayListExtra(
+                        CITY_ALL,
+                        ArrayList(cityData.info?.discount_all ?: emptyList())
                     )
 
                     context.startActivity(intent)

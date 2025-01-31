@@ -146,7 +146,7 @@ fun getCitiesData(
                     val infraSnapshot = snapshot.child("inner_city")
                     val area = snapshot.child("Umgebung").value as? List<String>
 
-                    val infos = if (infosSnapshot.exists()) {
+                    val info = if (infosSnapshot.exists()) {
                         CityInfo(
                             sights = infosSnapshot.child("sights").getValue(object: GenericTypeIndicator<List<String>>() {}),
                             discount_all = infosSnapshot.child("discount_free_all").getValue(object : GenericTypeIndicator<List<String>>() {}),
@@ -173,7 +173,7 @@ fun getCitiesData(
                             name = name,
                             imageUrl = imageUrl,
                             country = country,
-                            infos = infos,
+                            info = info,
                             airport_to_city = airport,
                             inner_city = infra,
                             area_city = area

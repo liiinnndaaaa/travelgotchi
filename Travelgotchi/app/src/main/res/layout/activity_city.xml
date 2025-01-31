@@ -58,7 +58,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -94,7 +95,7 @@
                 <ExpandableListView
                     android:id="@+id/expendableList_info_city"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:divider="@android:color/background_light"
                     android:dividerHeight="1dp"
                     android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
@@ -143,7 +144,7 @@
             <ExpandableListView
                 android:id="@+id/expendableList_infra"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:divider="@android:color/background_light"
                 android:dividerHeight="1dp"
                 android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
