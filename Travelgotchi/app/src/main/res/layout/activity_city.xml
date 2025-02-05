@@ -83,7 +83,7 @@
                 android:id="@+id/tv_info_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Infos:"
+                android:text="Sehenswürdigkeiten und Apps:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linear_layout_city"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -91,6 +91,18 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18ssp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sightsView"
+                tools:listitem="@layout/item_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_info_city"
+                app:layout_constraintTop_toBottomOf="@id/tv_info_city" />
 
                 <ExpandableListView
                     android:id="@+id/expendableList_info_city"
@@ -100,7 +112,7 @@
                     android:dividerHeight="1dp"
                     android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_info_city"/>
+                    app:layout_constraintTop_toBottomOf="@id/sightsView"/>
 
             <TextView
                 android:id="@+id/tv_airport"

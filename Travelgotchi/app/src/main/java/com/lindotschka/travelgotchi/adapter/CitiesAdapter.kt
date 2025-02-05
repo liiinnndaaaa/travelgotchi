@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.lindotschka.travelgotchi.R
 import com.lindotschka.travelgotchi.activities.CityActivity
-import com.lindotschka.travelgotchi.databinding.ItemCityBinding
+import com.lindotschka.travelgotchi.databinding.ItemPicBinding
 import com.lindotschka.travelgotchi.model.CityData
 import com.lindotschka.travelgotchi.util.getCitiesData
 
@@ -28,12 +28,12 @@ class CitiesAdapter(
         const val CITY_ALL = "com.lindotschka.travelgotchi.adapter.allCity"
     }
 
-    inner class CityViewHolder(var v:ItemCityBinding): RecyclerView.ViewHolder(v.root)
+    inner class CityViewHolder(var v:ItemPicBinding): RecyclerView.ViewHolder(v.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {
         val inflter = LayoutInflater.from(parent.context)
-        val v = DataBindingUtil.inflate<ItemCityBinding>(
-            inflter, R.layout.item_city, parent, false)
+        val v = DataBindingUtil.inflate<ItemPicBinding>(
+            inflter, R.layout.item_pic, parent, false)
         return CityViewHolder(v)
     }
 
@@ -50,13 +50,13 @@ class CitiesAdapter(
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         val city = cityList[position]
 
-        holder.v.cityName.text = city.name
+        holder.v.picName.text = city.name
 
         Glide.with(holder.itemView.context)
             .load(city.imageUrl)
             .placeholder(R.drawable.ic_continents)
             .error(R.drawable.ic_home)
-            .into(holder.v.cityImage)
+            .into(holder.v.picImage)
 
         // Klick-Event
         holder.itemView.setOnClickListener {

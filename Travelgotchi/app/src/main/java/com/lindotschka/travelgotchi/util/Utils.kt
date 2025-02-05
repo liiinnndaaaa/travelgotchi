@@ -1,6 +1,7 @@
 package com.lindotschka.travelgotchi.util
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,9 @@ import com.lindotschka.travelgotchi.model.CityData
 import com.lindotschka.travelgotchi.model.CityInfo
 import com.lindotschka.travelgotchi.model.CountryData
 import com.lindotschka.travelgotchi.model.CountryInfo
+import com.lindotschka.travelgotchi.model.FoodData
 import com.lindotschka.travelgotchi.model.InfraCity
+import com.lindotschka.travelgotchi.model.SightsData
 
 fun getCountriesData(
     mDataBase: DatabaseReference,
@@ -90,34 +93,35 @@ fun generateCountries(
     viewModel.loadCountries(database, context, continent)
 }
 
-fun getCity(
+inline fun <reified T> getShortData(
     mDataBase: DatabaseReference,
     context: Context,
     upperClass: String,
-    onComplete: (List<CityData>) -> Unit
+    crossinline onComplete: (List<T>) -> Unit
 ) {
-    val cityList = ArrayList<CityData>()
+    val itemList = ArrayList<T>()
 
     mDataBase.addListenerForSingleValueEvent(object: ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()){
-                cityList.clear()
+                itemList.clear()
 
-                for (citySnapshot in snapshot.children) {
-                    val name = citySnapshot.child("name").value as? String
-                    val imageUrl = citySnapshot.child("imageUrl").value as? String
-                    val country = citySnapshot.child("country").value as? String
+                for (itemSnapshot in snapshot.children) {
+                    val name = itemSnapshot.child("name").value as? String
+                    val imageUrl = itemSnapshot.child("imageUrl").value as? String
+                    val upperClass2 = itemSnapshot.child("upper_class").value as? String
 
-                    if (name != null && imageUrl != null && country == upperClass) {
-                        val city = CityData(
-                            name = name,
-                            imageUrl = imageUrl,
-                            country = country
-                        )
-                        cityList.add(city)
+                    if (name != null && imageUrl != null && upperClass2 == upperClass) {
+                        val item = createItem<T>(name, imageUrl, upperClass2)
+                        Log.d("FirebaseData", "Erstelltes Item: $item")
+
+                        if (item != null) {
+                            itemList.add(item)
+                        }
+
                     }
                 }
-                onComplete(cityList)
+                onComplete(itemList)
             }
         }
 
@@ -140,7 +144,7 @@ fun getCitiesData(
             if (snapshot.exists()){
                     val name = snapshot.child("name").value as? String
                     val imageUrl = snapshot.child("imageUrl").value as? String
-                    val country = snapshot.child("country").value as? String
+                    val country = snapshot.child("upper_class").value as? String
                     val infosSnapshot = snapshot.child("info")
                     val airport = snapshot.child("airport_to_city").getValue(object: GenericTypeIndicator<List<String>>() {})
                     val infraSnapshot = snapshot.child("inner_city")
@@ -172,7 +176,7 @@ fun getCitiesData(
                         CityData(
                             name = name,
                             imageUrl = imageUrl,
-                            country = country,
+                            upper_class = country,
                             info = info,
                             airport_to_city = airport,
                             inner_city = infra,
@@ -192,4 +196,19 @@ fun getCitiesData(
 
     })
 }
+
+inline fun <reified T> createItem(
+    name: String,
+    imageUrl: String,
+    upperClass: String
+): T? {
+    return when (T::class) {
+        CityData::class -> CityData(name, imageUrl, upperClass) as? T
+        FoodData::class -> FoodData(name, imageUrl, upperClass) as? T
+        SightsData::class -> SightsData(name, imageUrl, upperClass) as? T
+
+        else -> null
+    }
+}
+
 

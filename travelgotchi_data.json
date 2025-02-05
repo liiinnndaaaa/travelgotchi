@@ -28,10 +28,6 @@
             "continent": "europe",
             "infos": {
                 "geographicalData": "Deutschland hat 84,48 Mio. Einwohner (Stand 2023) und eine Fläche von 357.588 Quadratkilometern.",
-                "essenskultur": [
-                    "Curry-Wurst",
-                    "Döner"
-                ],
                 "apps": [
                     "Too good to go",
                     "Neotaste"
@@ -43,6 +39,9 @@
                     "Oktoberfest",
                     "Stocherkahnrennen",
                     "Weihnachtsmarkt"
+                ],
+                "food": [
+                    "Currywurst"
                 ]
             },
             "cities": [
@@ -55,10 +54,6 @@
             "continent": "europe",
             "infos": {
                 "geographicalData": "Frankreich hat 68,17 Mio. Einwohner (Stand 2023) und eine Fläche von 632.734 Quadratkilometern.",
-                "essenskultur": [
-                    "Schnecken",
-                    "Froschschenkel"
-                ],
                 "apps": [
                     "Too good to go"
                 ],
@@ -67,6 +62,9 @@
                 ],
                 "events": [
                     "pending"
+                ],
+                "food": [
+                    "Schnecken"
                 ]
             },
             "cities": [
@@ -79,10 +77,6 @@
             "continent": "asia",
             "infos": {
                 "geographicalData": "Japan hat 125,52 Mio. Einwohner (Stand 2023) und eine Fläche von 377.974 Quadratkilometern.",
-                "essenskultur": [
-                    "Sushi",
-                    "Ramen"
-                ],
                 "apps": [
                     "pending"
                 ],
@@ -91,6 +85,9 @@
                 ],
                 "events": [
                     "Penis-Festival"
+                ],
+                "food": [
+                    "Sushi"
                 ]
             }
         },
@@ -100,10 +97,6 @@
             "continent": "europe",
             "infos": {
                 "geographicalData": "Griechenland hat 10,36 Mio. Einwohner (Stand 2023) und eine Fläche von 131.694 Quadratkilometern.",
-                "essenskultur": [
-                    "Gyros",
-                    "Souvlaki"
-                ],
                 "apps": [
                     "pending"
                 ],
@@ -112,6 +105,9 @@
                 ],
                 "events": [
                     "pending"
+                ],
+                "food": [
+                    "Gyros"
                 ]
             }
         },
@@ -121,10 +117,6 @@
             "continent": "northamerica",
             "infos": {
                 "geographicalData": "pending",
-                "essenskultur": [
-                    "Tacos",
-                    "Burritos"
-                ],
                 "apps": [
                     "pending"
                 ],
@@ -133,6 +125,9 @@
                 ],
                 "events": [
                     "pending"
+                ],
+                "food": [
+                    "Tacos"
                 ]
             }
         }
@@ -141,12 +136,8 @@
         "Berlin": {
             "name": "Berlin",
             "imageUrl": "https://www.germany.travel/media/redaktion/staedte_kultur_content/berlin/Berlin_Brandenburger_Tor_am_Pariser_Platz_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg",
-            "country": "Deutschland",
+            "upper_class": "Deutschland",
             "info": {
-                "sights": [
-                    "Brandenburger-Tor",
-                    "Fernsehturm"
-                ],
                 "discount_free_all": [
                     "Museen am Anfang des Monats"
                 ],
@@ -158,6 +149,9 @@
                 ],
                 "Apps": [
                     "pending"
+                ],
+                "sights": [
+                    "Brandenburger"
                 ]
             },
             "airport_to_city": [
@@ -183,12 +177,8 @@
         "Paris": {
             "name": "Paris",
             "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_Night.jpg",
-            "country": "Frankreich",
+            "upper_class": "Frankreich",
             "info": {
-                "sights": [
-                    "Eiffelturm",
-                    "Louvre"
-                ],
                 "discount_free_all": [
                     "Am ersten Sonntag im Monat sind viele Museen gratis"
                 ],
@@ -201,6 +191,9 @@
                 "Apps": [
                     "RATP",
                     "Citymapper"
+                ],
+                "sights": [
+                    "Louvre"
                 ]
             },
             "airport_to_city": [
@@ -223,6 +216,92 @@
             "Umgebung": [
                 "pending"
             ]
+        }
+    },
+    "food": {
+        "Currywurst": {
+            "name": "Currywurst",
+            "imageUrl": "https://www.malteskitchen.de/wp-content/uploads/2021/05/mango-currysauce-currywurst-9192.jpg",
+            "vegetarisch": "nein",
+            "vegan": "nein",
+            "region": [
+                "Deutschland",
+                "Berlin",
+                "Ruhrgebiet"
+            ],
+            "upper_class": "Deutschland"
+        },
+        "Schnecken": {
+            "name": "Schnecken",
+            "imageUrl": "https://cdn.shopify.com/s/files/1/0018/5329/2643/files/weinbergschnecke-essen.jpg?v=1723115910",
+            "vegetarisch": "nein",
+            "vegan": "nein",
+            "region": [
+                "Frankreich"
+            ],
+            "upper_class": "Frankreich"
+        },
+        "Sushi": {
+            "name": "Sushi",
+            "imageUrl": "https://www.handelshof.de/fileadmin/user_upload/Verschiedene_Sushi_Varianten.jpg",
+            "vegetarisch": "Möglich, da es verschiedene Variationen gibt.",
+            "vegan": "Möglich.",
+            "region": [
+                "Japan"
+            ],
+            "upper_class": "Japan"
+        },
+        "Gyros": {
+            "name": "Gyros",
+            "imageUrl": "https://images.getrecipekit.com/20230711130915-gyros-rezept.jpg?width=650&quality=90&auto_optimize=medium",
+            "vegetarisch": "nein",
+            "vegan": "nein",
+            "region": [
+                "Griechenland"
+            ],
+            "upper_class": "Griechenland"
+        },
+        "Tacos": {
+            "name": "Tacos",
+            "imageUrl": "https://brandsitesplatform-res.cloudinary.com/image/fetch/w_auto:100,c_scale,q_auto:eco,f_auto,fl_lossy,dpr_auto,e_sharpen:85/https://assets.brandplatform.generalmills.com%2F-%2Fmedia%2Fproject%2Fgmi%2Foldelpaso%2Foldelpaso-ch%2Foepp%2Frecipes-2017%2Fchicken-ranch-tacos-16-9.jpg%3Frev%3D0c2fdacf0a0f45598c3786932e2bff76",
+            "vegetarisch": "Möglich, da es verschiedene Variationen gibt.",
+            "vegan": "Möglich.",
+            "region": [
+                "Mexiko",
+                "Streetfood-Stände"
+            ],
+            "upper_class": "Mexiko"
+        }
+    },
+    "sights": {
+        "Brandenburger": {
+            "name": "Brandenburger Tor",
+            "imageUrl": "https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_mobile_1x/private/image/Brandenburger_Tor_mehrHimmel_web_0.jpg.jpg?itok=4mZNQ6a4",
+            "infos": "Hier stehen bald Kurzinfos darüber.",
+            "preis": [
+                "Kostenlos für alle."
+            ],
+            "hauptattraktion": "Ja, es ist ein Wahrzeichen Berlins!",
+            "nähe": [
+                "Checkpoint Charlie (2 Minuten Fußweg)"
+            ],
+            "planen": "Nein.",
+            "upper_class": "Berlin"
+        },
+        "Louvre": {
+            "name": "Louvre",
+            "imageUrl": "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1300/v1645846296/rg73rgkb4xsiigqzd3ab.jpg",
+            "infos": "Ist ein Museum blabla...",
+            "preis": [
+                "Für EU-Bürger unter 24: kostenlos",
+                "Für Erwachsene:..."
+            ],
+            "hauptattraktion": "Ja!",
+            "nähe": [
+                "blabla"
+            ],
+            "planen": "Jein.",
+            "upper_class": "Paris"
         }
     }
 }

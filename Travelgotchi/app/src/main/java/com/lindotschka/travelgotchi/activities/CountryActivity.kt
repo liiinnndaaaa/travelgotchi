@@ -10,8 +10,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.lindotschka.travelgotchi.R
 import com.lindotschka.travelgotchi.adapter.CitiesAdapter
 import com.lindotschka.travelgotchi.adapter.CountriesAdapter
+import com.lindotschka.travelgotchi.adapter.FoodAdapter
 import com.lindotschka.travelgotchi.databinding.ActivityCountryBinding
-import com.lindotschka.travelgotchi.util.getCity
+import com.lindotschka.travelgotchi.util.getShortData
 
 class CountryActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -19,13 +20,12 @@ class CountryActivity : AppCompatActivity() {
     private lateinit var countryName: String
     private lateinit var countryThumb: String
     private lateinit var citiesAdapter: CitiesAdapter
+    private lateinit var foodAdapter: FoodAdapter
     private lateinit var countryGeo: String
-    private lateinit var countryFood: ArrayList<String>
     private lateinit var countryCulture: ArrayList<String>
 
     private lateinit var binding: ActivityCountryBinding
     private lateinit var geoTextView: TextView
-    private lateinit var foodTextView: TextView
     private lateinit var cultureTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,8 +64,10 @@ class CountryActivity : AppCompatActivity() {
         geoTextView = findViewById(R.id.geo_info)
         geoTextView.text = countryGeo
 
-        foodTextView = findViewById(R.id.food_info)
-        foodTextView.text = countryFood?.joinToString(separator = "\n") { "\u2022 $it" }
+        val foodView = binding.foodView
+        foodView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        foodAdapter = FoodAdapter(ArrayList())
+        foodView.adapter = foodAdapter
 
         cultureTextView = findViewById(R.id.culture_info)
         cultureTextView.text = countryCulture?.joinToString(separator = "\n") { "\u2022 $it" }
@@ -73,17 +75,22 @@ class CountryActivity : AppCompatActivity() {
 
     private fun getCountryInformation() {
         val intent = intent
-        val database = FirebaseDatabase.getInstance().getReference("cities")
+        val databaseCities = FirebaseDatabase.getInstance().getReference("cities")
+        val databaseFood = FirebaseDatabase.getInstance().getReference("food")
 
         countryName = intent.getStringExtra(CountriesAdapter.COUNTRY_NAME)!!
         countryThumb = intent.getStringExtra(CountriesAdapter.COUNTRY_THUMB)!!
 
-        getCity(database, this, countryName) { cityList ->
+        getShortData(databaseCities, this, countryName) { cityList ->
             citiesAdapter.updateData(cityList)
         }
 
         countryGeo = intent.getStringExtra(CountriesAdapter.COUNTRY_GEO)!!
-        countryFood = intent.getStringArrayListExtra(CountriesAdapter.COUNTRY_FOOD)!!
+
+        getShortData(databaseFood, this, countryName) { foodList ->
+            foodAdapter.updateData(foodList)
+        }
+
         countryCulture = intent.getStringArrayListExtra(CountriesAdapter.COUNTRY_CULTURE)!!
     }
 }
