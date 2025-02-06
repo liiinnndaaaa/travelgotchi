@@ -15,7 +15,7 @@ import com.lindotschka.travelgotchi.model.SightsData
 
 class ExpandableListAdapter(
     private val context: Context,
-    private val dataList: Map<String, List<Any>>
+    private var dataList: Map<String, List<Any>>
 ) : BaseExpandableListAdapter() {
 
     private val titleList = dataList.keys.toList()
@@ -36,12 +36,7 @@ class ExpandableListAdapter(
         val layoutRes = if (childItem is SightsData) R.layout.item_pic else R.layout.list_info
         val view = convertView ?: LayoutInflater.from(context).inflate(layoutRes, parent, false)
 
-        if (childItem is SightsData) {
-            val cityNameTextView = view.findViewById<TextView>(R.id.picName)
-            val cityImageView = view.findViewById<ImageView>(R.id.picImage)
-            cityNameTextView.text = childItem.name
-            Glide.with(context).load(childItem.imageUrl).into(cityImageView)
-        } else if (childItem is String) {
+        if (childItem is String) {
             val infoTextView = view.findViewById<TextView>(R.id.infoText)
             infoTextView.text = childItem
         }

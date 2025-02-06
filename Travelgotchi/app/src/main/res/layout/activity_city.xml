@@ -83,7 +83,7 @@
                 android:id="@+id/tv_info_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sehenswürdigkeiten und Apps:"
+                android:text="Sehenswürdigkeiten:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linear_layout_city"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -127,17 +127,15 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_18ssp"/>
 
-            <TextView
-                android:id="@+id/airport_info"
-                android:layout_width="wrap_content"
+            <ExpandableListView
+                android:id="@+id/expendableList_airport"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blabla."
+                android:divider="@android:color/background_light"
+                android:dividerHeight="1dp"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
                 app:layout_constraintStart_toStartOf="@id/tv_airport"
-                app:layout_constraintTop_toBottomOf="@id/tv_airport"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp" />
+                app:layout_constraintTop_toBottomOf="@id/tv_airport"/>
 
             <TextView
                 android:id="@+id/tv_infra"
@@ -145,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:text="Fortbewegung innerhalb der Stadt:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/airport_info"
+                app:layout_constraintTop_toBottomOf="@id/expendableList_airport"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_15ssp"
@@ -164,10 +162,10 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_infra"/>
 
             <TextView
-                android:id="@+id/tv_area"
+                android:id="@+id/tv_nightlife"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dinge in der Umgebung:"
+                android:text="Nightlife:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/expendableList_infra"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -178,12 +176,64 @@
                 android:textSize="@dimen/_18ssp"/>
 
             <TextView
-                android:id="@+id/area_info"
+                android:id="@+id/nightlife_info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Blabla."
+                app:layout_constraintStart_toStartOf="@id/tv_nightlife"
+                app:layout_constraintTop_toBottomOf="@id/tv_nightlife"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp" />
+
+            <TextView
+                android:id="@+id/tv_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dinge in der Umgebung:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nightlife_info"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/areaView"
+                tools:listitem="@layout/item_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintStart_toStartOf="@id/tv_area"
-                app:layout_constraintTop_toBottomOf="@id/tv_area"
+                app:layout_constraintTop_toBottomOf="@id/tv_area" />
+
+            <TextView
+                android:id="@+id/tv_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apps:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/areaView"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"/>
+
+            <TextView
+                android:id="@+id/apps_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Blabla."
+                app:layout_constraintStart_toStartOf="@id/tv_apps"
+                app:layout_constraintTop_toBottomOf="@id/tv_apps"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:textColor="@color/black"

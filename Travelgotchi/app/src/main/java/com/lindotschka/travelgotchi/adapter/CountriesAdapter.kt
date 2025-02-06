@@ -20,7 +20,6 @@ class CountriesAdapter(
         const val COUNTRY_NAME = "com.lindotschka.travelgotchi.adapter.nameCountry"
         const val COUNTRY_THUMB = "com.lindotschka.travelgotchi.adapter.thumbCountry"
         const val COUNTRY_GEO = "com.lindotschka.travelgotchi.adapter.geoCountry"
-        const val COUNTRY_FOOD = "com.lindotschka.travelgotchi.adapter.foodCountry"
         const val COUNTRY_CULTURE = "com.lindotschka.travelgotchi.adapter.cultureCountry"
     }
     inner class CountryViewHolder(var v:ItemCountryBinding): RecyclerView.ViewHolder(v.root)
@@ -64,9 +63,6 @@ class CountriesAdapter(
             intent.putExtra(COUNTRY_THUMB,country.imageUrl)
 
             intent.putExtra(COUNTRY_GEO,country.infos?.geographicalData)
-            intent.putStringArrayListExtra(
-                COUNTRY_FOOD,
-                ArrayList(foodculture))
             intent.putStringArrayListExtra(
                 COUNTRY_CULTURE,
                 ArrayList(culture))

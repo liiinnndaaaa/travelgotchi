@@ -12,6 +12,7 @@ import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import com.lindotschka.travelgotchi.HomeViewModel
 import com.lindotschka.travelgotchi.adapter.CountriesAdapter
+import com.lindotschka.travelgotchi.model.CityAirport
 import com.lindotschka.travelgotchi.model.CityData
 import com.lindotschka.travelgotchi.model.CityInfo
 import com.lindotschka.travelgotchi.model.CountryData
@@ -146,17 +147,26 @@ fun getCitiesData(
                     val imageUrl = snapshot.child("imageUrl").value as? String
                     val country = snapshot.child("upper_class").value as? String
                     val infosSnapshot = snapshot.child("info")
-                    val airport = snapshot.child("airport_to_city").getValue(object: GenericTypeIndicator<List<String>>() {})
+                    val airportSnapshot = snapshot.child("airport_to_city")
                     val infraSnapshot = snapshot.child("inner_city")
+                    val nightlife = snapshot.child("Nightlife") as? List<String>
                     val area = snapshot.child("Umgebung").value as? List<String>
+                    val apps = snapshot.child("Apps").value as? List<String>
 
                     val info = if (infosSnapshot.exists()) {
                         CityInfo(
                             sights = infosSnapshot.child("sights").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            discount_all = infosSnapshot.child("discount_free_all").getValue(object : GenericTypeIndicator<List<String>>() {}),
-                            discount_special = infosSnapshot.child("discount_some").getValue(object : GenericTypeIndicator<List<String>>() {}),
+                            discount_free = infosSnapshot.child("discount_free").getValue(object : GenericTypeIndicator<List<String>>() {}),
                             must_plan = infosSnapshot.child("must_plan").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            apps = infosSnapshot.child("Apps").getValue(object: GenericTypeIndicator<List<String>>() {})
+                        )
+                    } else {
+                        null
+                    }
+
+                    val airport = if (airportSnapshot.exists()) {
+                        CityAirport(
+                            busbahn = infraSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            taxi = infraSnapshot.child("Taxi").getValue(object: GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
                         null
@@ -180,7 +190,9 @@ fun getCitiesData(
                             info = info,
                             airport_to_city = airport,
                             inner_city = infra,
-                            area_city = area
+                            nightlife = nightlife,
+                            area_city = area,
+                            apps = apps
                         )
                     } else {
                         null
