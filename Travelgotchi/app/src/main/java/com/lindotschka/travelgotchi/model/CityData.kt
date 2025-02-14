@@ -6,16 +6,16 @@ data class CityData(
     val upper_class: String? = null,
     val info: CityInfo? = null,
     val airport_to_city: CityAirport? = null,
-    val inner_city: InfraCity? = null,
-    val area_city: List<String>? = null,
-    val nightlife: List<String>? = null,
-    val apps: List<String>? = null
+    val inner_city: InfraCity? = null
 )
 
 data class CityInfo(
     val discount_free: List<String>? = null,
     val must_plan: List<String>? = null,
-    val sights: List<String>? = null
+    val nightlife: List<String>? = null,
+    val area: List<String>? = null,
+    val apps: List<String>? = null,
+    val sights: List<String>? = null,
 )
 
 data class CityAirport(

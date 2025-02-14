@@ -40,6 +40,9 @@
                     "Stocherkahnrennen",
                     "Weihnachtsmarkt"
                 ],
+                "inner_country": [
+                    "pending"
+                ],
                 "food": [
                     "Currywurst"
                 ]
@@ -61,6 +64,9 @@
                     "pending"
                 ],
                 "events": [
+                    "pending"
+                ],
+                "inner_country": [
                     "pending"
                 ],
                 "food": [
@@ -86,6 +92,9 @@
                 "events": [
                     "Penis-Festival"
                 ],
+                "inner_country": [
+                    "pending"
+                ],
                 "food": [
                     "Sushi"
                 ]
@@ -104,6 +113,9 @@
                     "pending"
                 ],
                 "events": [
+                    "pending"
+                ],
+                "inner_country": [
                     "pending"
                 ],
                 "food": [
@@ -126,6 +138,9 @@
                 "events": [
                     "pending"
                 ],
+                "inner_country": [
+                    "pending"
+                ],
                 "food": [
                     "Tacos"
                 ]
@@ -143,6 +158,17 @@
                 ],
                 "must_plan": [
                     "pending"
+                ],
+                "Nightlife": [
+                    "Viertel1",
+                    "Viertel2"
+                ],
+                "Umgebung": [
+                    "pending"
+                ],
+                "Apps": [
+                    "App1",
+                    "App2"
                 ],
                 "sights": [
                     "Brandenburger"
@@ -166,16 +192,7 @@
                 "mit_Fahrrad": [
                     "pending"
                 ]
-            },
-            "Nightlife": [
-                "pending"
-            ],
-            "Umgebung": [
-                "pending"
-            ],
-            "Apps": [
-                "pending"
-            ]
+            }
         },
         "Paris": {
             "name": "Paris",
@@ -187,6 +204,17 @@
                 ],
                 "must_plan": [
                     "Eiffelturm"
+                ],
+                "Nightlife": [
+                    "Viertel1",
+                    "Viertel2"
+                ],
+                "Umgebung": [
+                    "pending"
+                ],
+                "Apps": [
+                    "RATP",
+                    "Citymapper"
                 ],
                 "sights": [
                     "Louvre"
@@ -211,17 +239,7 @@
                 "mit_Fahrrad": [
                     "pending"
                 ]
-            },
-            "Nightlife": [
-                "pending"
-            ],
-            "Umgebung": [
-                "pending"
-            ],
-            "Apps": [
-                "RATP",
-                "Citymapper"
-            ]
+            }
         }
     },
     "food": {

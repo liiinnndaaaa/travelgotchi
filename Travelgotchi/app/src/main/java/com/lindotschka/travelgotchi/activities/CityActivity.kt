@@ -2,6 +2,8 @@ package com.lindotschka.travelgotchi.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ExpandableListView
 import android.widget.TextView
 import android.widget.Toast
@@ -48,9 +50,11 @@ class CityActivity : AppCompatActivity() {
     private lateinit var sightsAdapter: SightsAdapter
 
     private lateinit var cityNightlife: ArrayList<String>
+    private lateinit var cityApps: ArrayList<String>
 
     private lateinit var binding: ActivityCityBinding
     private lateinit var nightlifeTextView: TextView
+    private lateinit var appsTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,7 +162,10 @@ class CityActivity : AppCompatActivity() {
         sightView.adapter = sightsAdapter
 
         nightlifeTextView = findViewById(R.id.nightlife_info)
-        nightlifeTextView.text = cityNightlife.joinToString(separator = "\n") { "\u2022 $it" }
+        nightlifeTextView.text = cityNightlife?.joinToString(separator = "\n") { "\u2022 $it" }
+
+        appsTextView = findViewById(R.id.apps_info)
+        appsTextView.text = cityApps.joinToString(separator = "\n") { "\u2022 $it" }
     }
 
     private fun setupExpandableListView(dataList: Map<String, List<String>>, mDatabase: DatabaseReference) {
@@ -194,20 +201,32 @@ class CityActivity : AppCompatActivity() {
 
         expandableListAdapter.notifyDataSetChanged()
 
+        listView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                // Listener entfernen, damit er nicht wiederholt aufgerufen wird
+                listView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                setExpandableListViewHeight(listView)
+            }
+        })
+
+
         listView!!.setOnGroupCollapseListener { groupPosition ->
             Toast.makeText(
                 applicationContext,
                 (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.",
                 Toast.LENGTH_SHORT
             ).show()
+            setExpandableListViewHeight(listView)
         }
 
-        listView!!.setOnGroupExpandListener { groupPosition ->
+        listView.setOnGroupExpandListener { groupPosition ->
             Toast.makeText(
                 applicationContext,
                 (titleList as ArrayList<String>)[groupPosition] + " List Expanded.",
                 Toast.LENGTH_SHORT
             ).show()
+            // Rufe die Hilfsfunktion auf, um die Höhe der expandierten Gruppe anzupassen:
+            setExpandableListViewHeight(listView)
         }
         listView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
             val group = titleList[groupPosition]
@@ -219,6 +238,43 @@ class CityActivity : AppCompatActivity() {
             ).show()
             false
         }
+    }
+
+    private fun setExpandableListViewHeight(expandableListView: ExpandableListView) {
+        val adapter = expandableListView.expandableListAdapter ?: return
+        var totalHeight = 0
+
+        // Gehe durch alle Gruppen
+        for (i in 0 until adapter.groupCount) {
+            // Hole und messe das Gruppen-Header-View
+            val groupItem = adapter.getGroupView(i, false, null, expandableListView)
+            groupItem.measure(
+                View.MeasureSpec.makeMeasureSpec(expandableListView.width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            )
+            totalHeight += groupItem.measuredHeight
+
+            // Falls die Gruppe expandiert ist, addiere die Höhe aller Child-Views
+            if (expandableListView.isGroupExpanded(i)) {
+                for (j in 0 until adapter.getChildrenCount(i)) {
+                    val listItem = adapter.getChildView(i, j, false, null, expandableListView)
+                    listItem.measure(
+                        View.MeasureSpec.makeMeasureSpec(expandableListView.width, View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                    )
+                    totalHeight += listItem.measuredHeight
+                }
+            }
+        }
+
+        // Addiere die Höhe der Divider zwischen den Gruppen (falls vorhanden)
+        totalHeight += expandableListView.dividerHeight * (adapter.groupCount - 1)
+
+        // Setze die berechnete Höhe in die Layout-Parameter der ExpandableListView
+        val params = expandableListView.layoutParams
+        params.height = totalHeight
+        expandableListView.layoutParams = params
+        expandableListView.requestLayout()
     }
 
     private fun getCityInformation() {
@@ -233,6 +289,8 @@ class CityActivity : AppCompatActivity() {
         }
 
         cityNightlife = intent.getStringArrayListExtra(CitiesAdapter.CITY_NIGHTLIFE)!!
+        Log.d("CityActivity", "Nightlife wird geladen: $cityNightlife")
+        cityApps = intent.getStringArrayListExtra(CitiesAdapter.CITY_APPS)!!
 
     }
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".activities.CountryActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -57,13 +57,13 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/linear_layout_city"
@@ -108,6 +108,9 @@
                     android:id="@+id/expendableList_info_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:isScrollContainer="false"
+                    android:minHeight="200dp"
                     android:divider="@android:color/background_light"
                     android:dividerHeight="1dp"
                     android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
@@ -131,6 +134,9 @@
                 android:id="@+id/expendableList_airport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:isScrollContainer="false"
+                android:minHeight="200dp"
                 android:divider="@android:color/background_light"
                 android:dividerHeight="1dp"
                 android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
@@ -155,6 +161,9 @@
                 android:id="@+id/expendableList_infra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:isScrollContainer="false"
+                android:minHeight="200dp"
                 android:divider="@android:color/background_light"
                 android:dividerHeight="1dp"
                 android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
@@ -177,7 +186,7 @@
 
             <TextView
                 android:id="@+id/nightlife_info"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Blabla."
                 app:layout_constraintStart_toStartOf="@id/tv_nightlife"
@@ -229,11 +238,12 @@
 
             <TextView
                 android:id="@+id/apps_info"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Blabla."
                 app:layout_constraintStart_toStartOf="@id/tv_apps"
                 app:layout_constraintTop_toBottomOf="@id/tv_apps"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:textColor="@color/black"

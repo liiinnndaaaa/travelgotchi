@@ -5,7 +5,10 @@ cities = {
         "upper_class": "Deutschland",
         "info": {
             "discount_free": ["Museen am Anfang des Monats"],
-            "must_plan": ["pending"]
+            "must_plan": ["pending"],
+            "Nightlife": ["Viertel1","Viertel2"],
+            "Umgebung": ["pending"],
+            "Apps": ["App1","App2"]
         },
         "airport_to_city": {
             "Bus_Bahn": ["pending"],
@@ -15,10 +18,7 @@ cities = {
             "Bus_Bahn": ["pending"],
             "zu_Fuss": ["pending"],
             "mit_Fahrrad": ["pending"]
-        },
-        "Nightlife": ["pending"],
-        "Umgebung": ["pending"],
-        "Apps": ["pending"]
+        }
     },
     "Paris": {
         "name": "Paris",
@@ -26,7 +26,10 @@ cities = {
         "upper_class": "Frankreich",
         "info": {
             "discount_free": ["Am ersten Sonntag im Monat sind viele Museen gratis"],
-            "must_plan": ["Eiffelturm"]
+            "must_plan": ["Eiffelturm"],
+            "Nightlife": ["Viertel1","Viertel2"],
+            "Umgebung": ["pending"],
+            "Apps": ["RATP", "Citymapper"]
         },
         "airport_to_city": {
             "Bus_Bahn": ["pending"],
@@ -36,9 +39,6 @@ cities = {
             "Bus_Bahn": ["T+ Tickets", "Navigo Pass"],
             "zu_Fuss": ["pending"],
             "mit_Fahrrad": ["pending"]
-        },
-        "Nightlife": ["pending"],
-        "Umgebung": ["pending"],
-        "Apps": ["RATP", "Citymapper"]
+        }
     }
 }

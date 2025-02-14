@@ -7,7 +7,8 @@ countries = {
             "geographicalData": "Deutschland hat 84,48 Mio. Einwohner (Stand 2023) und eine Fläche von 357.588 Quadratkilometern.",
             "apps": ["Too good to go", "Neotaste"],
             "culturalSpecials": ["In Deutschland wird gerne Bier getrunken"],
-            "events": ["Oktoberfest", "Stocherkahnrennen", "Weihnachtsmarkt"]
+            "events": ["Oktoberfest", "Stocherkahnrennen", "Weihnachtsmarkt"],
+            "inner_country": ["pending"]
         }
     },
     "Frankreich": {
@@ -18,7 +19,8 @@ countries = {
             "geographicalData": "Frankreich hat 68,17 Mio. Einwohner (Stand 2023) und eine Fläche von 632.734 Quadratkilometern.",
             "apps": ["Too good to go"],
             "culturalSpecials": ["pending"],
-            "events": ["pending"]
+            "events": ["pending"],
+            "inner_country": ["pending"]
         }
     },
     "Japan": {
@@ -29,7 +31,8 @@ countries = {
             "geographicalData": "Japan hat 125,52 Mio. Einwohner (Stand 2023) und eine Fläche von 377.974 Quadratkilometern.",
             "apps": ["pending"],
             "culturalSpecials": ["pending"],
-            "events": ["Penis-Festival"]
+            "events": ["Penis-Festival"],
+            "inner_country": ["pending"]
         }
     },
     "Griechenland": {
@@ -40,7 +43,8 @@ countries = {
 					"geographicalData": "Griechenland hat 10,36 Mio. Einwohner (Stand 2023) und eine Fläche von 131.694 Quadratkilometern.",
 					"apps": ["pending"],
 					"culturalSpecials": ["pending"],
-					"events": ["pending"]
+					"events": ["pending"],
+            "inner_country": ["pending"]
 				}
     },
     "Mexiko": {
@@ -51,7 +55,8 @@ countries = {
 					"geographicalData": "pending",
 					"apps": ["pending"],
 					"culturalSpecials": ["pending"],
-					"events": ["pending"]
+					"events": ["pending"],
+            "inner_country": ["pending"]
 				}
     }
 }

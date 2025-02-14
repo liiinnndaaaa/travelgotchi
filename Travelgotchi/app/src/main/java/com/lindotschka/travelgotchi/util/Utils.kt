@@ -122,7 +122,7 @@ inline fun <reified T> getShortData(
 
                     }
                 }
-                onComplete(itemList)
+                onComplete(itemList.toList())
             }
         }
 
@@ -149,15 +149,15 @@ fun getCitiesData(
                     val infosSnapshot = snapshot.child("info")
                     val airportSnapshot = snapshot.child("airport_to_city")
                     val infraSnapshot = snapshot.child("inner_city")
-                    val nightlife = snapshot.child("Nightlife") as? List<String>
-                    val area = snapshot.child("Umgebung").value as? List<String>
-                    val apps = snapshot.child("Apps").value as? List<String>
 
                     val info = if (infosSnapshot.exists()) {
                         CityInfo(
                             sights = infosSnapshot.child("sights").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            discount_free = infosSnapshot.child("discount_free").getValue(object : GenericTypeIndicator<List<String>>() {}),
+                            discount_free = infosSnapshot.child("discount_free").getValue(object: GenericTypeIndicator<List<String>>() {}),
                             must_plan = infosSnapshot.child("must_plan").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            nightlife = infosSnapshot.child("Nightlife").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            area = infosSnapshot.child("Umgebung").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            apps = infosSnapshot.child("Apps").getValue(object: GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
                         null
@@ -165,8 +165,8 @@ fun getCitiesData(
 
                     val airport = if (airportSnapshot.exists()) {
                         CityAirport(
-                            busbahn = infraSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            taxi = infraSnapshot.child("Taxi").getValue(object: GenericTypeIndicator<List<String>>() {})
+                            busbahn = airportSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
+                            taxi = airportSnapshot.child("Taxi").getValue(object: GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
                         null
@@ -189,10 +189,7 @@ fun getCitiesData(
                             upper_class = country,
                             info = info,
                             airport_to_city = airport,
-                            inner_city = infra,
-                            nightlife = nightlife,
-                            area_city = area,
-                            apps = apps
+                            inner_city = infra
                         )
                     } else {
                         null
@@ -204,6 +201,7 @@ fun getCitiesData(
         override fun onCancelled(error: DatabaseError) {
             Toast.makeText(context,
                 error.message, Toast.LENGTH_SHORT).show()
+                onComplete(null)
         }
 
     })

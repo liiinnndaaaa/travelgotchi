@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_white">
+
+    <!-- Container für das Pop-up -->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="10dp"
+        android:layout_gravity="center">
+
+        <!-- Schließen-Icon -->
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_close"
+            android:layout_gravity="start"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="@color/black" />
+
+        <!-- Bild der Sehenswürdigkeit -->
+        <ImageView
+            android:id="@+id/sightImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_continents"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Name der Sehenswürdigkeit -->
+        <TextView
+            android:id="@+id/sightName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sehenswürdigkeit"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <!-- Beschreibung -->
+        <TextView
+            android:id="@+id/tv_sight_Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kurzinfos:"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/sightInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beispiel"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="@dimen/_5sdp"/>
+
+        <TextView
+            android:id="@+id/tv_sightPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preis:"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/sight_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blabla"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/tv_sightMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hauptattraktion?"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/sight_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blabla"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/tv_sightNear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In der Nähe:"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/sight_near"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blabla"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/tv_sightPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vorab buchen?"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/sight_plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blabla"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginTop="5dp" />
+
+        <!-- Buttons für Aktionen -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp">
+
+            <!-- Kalender-Button -->
+            <ImageButton
+                android:id="@+id/btn_add_calendar"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_calendar"
+                android:padding="10dp"
+                android:layout_marginEnd="12dp"
+                app:backgroundTint="@color/black"
+                app:tint="@color/white" />
+
+            <!-- Favoriten-Button -->
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="80dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_favorite"
+                android:padding="10dp"
+                app:backgroundTint="@color/black"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
