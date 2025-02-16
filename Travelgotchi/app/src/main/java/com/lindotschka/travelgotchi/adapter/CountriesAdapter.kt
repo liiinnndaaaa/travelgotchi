@@ -18,7 +18,7 @@ class CountriesAdapter(
 {
     companion object{
         const val COUNTRY_NAME = "com.lindotschka.travelgotchi.adapter.nameCountry"
-        const val COUNTRY_THUMB = "com.lindotschka.travelgotchi.adapter.thumbCountry"
+        const val COUNTRY_IMAGE = "com.lindotschka.travelgotchi.adapter.thumbCountry"
         const val COUNTRY_GEO = "com.lindotschka.travelgotchi.adapter.geoCountry"
         const val COUNTRY_CULTURE = "com.lindotschka.travelgotchi.adapter.cultureCountry"
     }
@@ -43,7 +43,7 @@ class CountriesAdapter(
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countryList[position]
-        val culture = country.infos?.culturalSpecials ?: emptyList()
+        val culture = country.info?.culturalSpecials ?: emptyList()
 
         // Name setzen
         holder.v.countryName.text = country.name
@@ -59,9 +59,9 @@ class CountriesAdapter(
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, CountryActivity::class.java)
             intent.putExtra(COUNTRY_NAME,country.name)
-            intent.putExtra(COUNTRY_THUMB,country.imageUrl)
+            intent.putExtra(COUNTRY_IMAGE,country.imageUrl)
 
-            intent.putExtra(COUNTRY_GEO,country.infos?.geographicalData)
+            intent.putExtra(COUNTRY_GEO,country.info?.geographicalData)
             intent.putStringArrayListExtra(
                 COUNTRY_CULTURE,
                 ArrayList(culture))

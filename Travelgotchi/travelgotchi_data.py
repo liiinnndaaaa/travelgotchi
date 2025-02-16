@@ -25,9 +25,9 @@ for city_id, city_data in cities.items():
 
 for food_id, food_data in food.items():
     country_id = food_data["upper_class"]
-    if "food" not in countries[country_id]["infos"]:
-        countries[country_id]["infos"]["food"] = []
-    countries[country_id]["infos"]["food"].append(food_id)
+    if "food" not in countries[country_id]["info"]:
+        countries[country_id]["info"]["food"] = []
+    countries[country_id]["info"]["food"].append(food_id)
 
 for sights_id, sights_data in sights.items():
     city_id = sights_data["upper_class"]

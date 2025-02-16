@@ -4,20 +4,20 @@ cities = {
         "imageUrl": "https://www.germany.travel/media/redaktion/staedte_kultur_content/berlin/Berlin_Brandenburger_Tor_am_Pariser_Platz_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg",
         "upper_class": "Deutschland",
         "info": {
-            "discount_free": ["Museen am Anfang des Monats"],
-            "must_plan": ["pending"],
-            "Nightlife": ["Viertel1","Viertel2"],
-            "Umgebung": ["pending"],
-            "Apps": ["App1","App2"]
+            "discountFree": ["Museen am Anfang des Monats"],
+            "mustPlan": ["pending"],
+            "nightlife": ["Viertel1","Viertel2"],
+            "area": ["pending"],
+            "apps": ["App1","App2"]
         },
         "airport_to_city": {
-            "Bus_Bahn": ["pending"],
-            "Taxi": ["pending"]
+            "busMetro": ["pending"],
+            "taxi": ["pending"]
         },
         "inner_city": {
-            "Bus_Bahn": ["pending"],
-            "zu_Fuss": ["pending"],
-            "mit_Fahrrad": ["pending"]
+            "busMetro": ["pending"],
+            "walking": ["pending"],
+            "bike": ["pending"]
         }
     },
     "Paris": {
@@ -25,20 +25,20 @@ cities = {
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_Night.jpg",
         "upper_class": "Frankreich",
         "info": {
-            "discount_free": ["Am ersten Sonntag im Monat sind viele Museen gratis"],
-            "must_plan": ["Eiffelturm"],
-            "Nightlife": ["Viertel1","Viertel2"],
-            "Umgebung": ["pending"],
-            "Apps": ["RATP", "Citymapper"]
+            "discountFree": ["Am ersten Sonntag im Monat sind viele Museen gratis"],
+            "mustPlan": ["Eiffelturm"],
+            "nightlife": ["Viertel1","Viertel2"],
+            "area": ["pending"],
+            "apps": ["RATP", "Citymapper"]
         },
         "airport_to_city": {
-            "Bus_Bahn": ["pending"],
-            "Taxi": ["pending"]
+            "busMetro": ["pending"],
+            "taxi": ["pending"]
         },
         "inner_city": {
-            "Bus_Bahn": ["T+ Tickets", "Navigo Pass"],
-            "zu_Fuss": ["pending"],
-            "mit_Fahrrad": ["pending"]
+            "busMetro": ["T+ Tickets", "Navigo Pass"],
+            "walking": ["pending"],
+            "bike": ["pending"]
         }
     }
 }

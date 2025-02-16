@@ -38,12 +38,12 @@ fun getCountriesData(
                     val name = countrySnapshot.child("name").value as? String
                     val imageUrl = countrySnapshot.child("imageUrl").value as? String
                     val continent = countrySnapshot.child("continent").value as? String
-                    val infosSnapshot = countrySnapshot.child("infos")
+                    val infosSnapshot = countrySnapshot.child("info")
 
                     val infos = if (infosSnapshot.exists()) {
                         CountryInfo(
                             geographicalData = infosSnapshot.child("geographicalData").value as? String,
-                            foodCulture = infosSnapshot.child("essenskultur").getValue(object : GenericTypeIndicator<List<String>>() {}),
+                            foodCulture = infosSnapshot.child("food").getValue(object : GenericTypeIndicator<List<String>>() {}),
                             culturalSpecials = infosSnapshot.child("culturalSpecials").getValue(object : GenericTypeIndicator<List<String>>() {})
                         )
                     } else {
@@ -57,7 +57,7 @@ fun getCountriesData(
                             name = name,
                             imageUrl = imageUrl,
                             continent = continent,
-                            infos = infos,
+                            info = infos,
                             cities = cities
                         )
                         countryList.add(country)
@@ -114,7 +114,6 @@ inline fun <reified T> getShortData(
 
                     if (name != null && imageUrl != null && upperClass2 == upperClass) {
                         val item = createItem<T>(name, imageUrl, upperClass2)
-                        Log.d("FirebaseData", "Erstelltes Item: $item")
 
                         if (item != null) {
                             itemList.add(item)
@@ -140,85 +139,145 @@ fun getCitiesData(
     onComplete: (CityData?) -> Unit
 ) {
 
-    mDataBase.addListenerForSingleValueEvent(object: ValueEventListener {
+    mDataBase.addListenerForSingleValueEvent(object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
-            if (snapshot.exists()){
-                    val name = snapshot.child("name").value as? String
-                    val imageUrl = snapshot.child("imageUrl").value as? String
-                    val country = snapshot.child("upper_class").value as? String
-                    val infosSnapshot = snapshot.child("info")
-                    val airportSnapshot = snapshot.child("airport_to_city")
-                    val infraSnapshot = snapshot.child("inner_city")
+            if (snapshot.exists()) {
+                val name = snapshot.child("name").value as? String
+                val imageUrl = snapshot.child("imageUrl").value as? String
+                val country = snapshot.child("upper_class").value as? String
+                val infosSnapshot = snapshot.child("info")
+                val airportSnapshot = snapshot.child("airport")
+                val infraSnapshot = snapshot.child("innerCity")
 
-                    val info = if (infosSnapshot.exists()) {
-                        CityInfo(
-                            sights = infosSnapshot.child("sights").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            discount_free = infosSnapshot.child("discount_free").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            must_plan = infosSnapshot.child("must_plan").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            nightlife = infosSnapshot.child("Nightlife").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            area = infosSnapshot.child("Umgebung").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            apps = infosSnapshot.child("Apps").getValue(object: GenericTypeIndicator<List<String>>() {})
-                        )
-                    } else {
-                        null
-                    }
+                val info = if (infosSnapshot.exists()) {
+                    CityInfo(
+                        sights = infosSnapshot.child("sights")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        discountFree = infosSnapshot.child("discountFree")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        mustPlan = infosSnapshot.child("mustPlan")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        nightlife = infosSnapshot.child("nightlife")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        area = infosSnapshot.child("area")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        apps = infosSnapshot.child("apps")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {})
+                    )
+                } else {
+                    null
+                }
 
-                    val airport = if (airportSnapshot.exists()) {
-                        CityAirport(
-                            busbahn = airportSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            taxi = airportSnapshot.child("Taxi").getValue(object: GenericTypeIndicator<List<String>>() {})
-                        )
-                    } else {
-                        null
-                    }
+                val airport = if (airportSnapshot.exists()) {
+                    CityAirport(
+                        busMetro = airportSnapshot.child("busMetro")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        taxi = airportSnapshot.child("taxi")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {})
+                    )
+                } else {
+                    null
+                }
 
-                    val infra = if (infraSnapshot.exists()) {
-                        InfraCity(
-                            transport1 = infraSnapshot.child("Bus_Bahn").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            transport2 = infraSnapshot.child("zu_Fuss").getValue(object: GenericTypeIndicator<List<String>>() {}),
-                            transport3 = infraSnapshot.child("mit_Fahrrad").getValue(object: GenericTypeIndicator<List<String>>() {})
-                        )
-                    } else {
-                        null
-                    }
+                val infra = if (infraSnapshot.exists()) {
+                    InfraCity(
+                        busMetro = infraSnapshot.child("busMetro")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        walking = infraSnapshot.child("walking")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {}),
+                        bike = infraSnapshot.child("bike")
+                            .getValue(object : GenericTypeIndicator<List<String>>() {})
+                    )
+                } else {
+                    null
+                }
 
-                    val city = if (name != null && imageUrl != null && country != null) {
-                        CityData(
-                            name = name,
-                            imageUrl = imageUrl,
-                            upper_class = country,
-                            info = info,
-                            airport_to_city = airport,
-                            inner_city = infra
-                        )
-                    } else {
-                        null
+                val city = if (name != null && imageUrl != null && country != null) {
+                    CityData(
+                        name = name,
+                        imageUrl = imageUrl,
+                        upper_class = country,
+                        info = info,
+                        airport = airport,
+                        innerCity = infra
+                    )
+                } else {
+                    null
                 }
                 onComplete(city)
             }
         }
 
         override fun onCancelled(error: DatabaseError) {
-            Toast.makeText(context,
-                error.message, Toast.LENGTH_SHORT).show()
-                onComplete(null)
+            Toast.makeText(
+                context,
+                error.message, Toast.LENGTH_SHORT
+            ).show()
+            onComplete(null)
         }
 
     })
 }
 
-inline fun <reified T> createItem(
-    name: String,
-    imageUrl: String,
-    upperClass: String
-): T? {
-    return when (T::class) {
-        CityData::class -> CityData(name, imageUrl, upperClass) as? T
-        FoodData::class -> FoodData(name, imageUrl, upperClass) as? T
-        SightsData::class -> SightsData(name, imageUrl, upperClass) as? T
+    fun getSightsData(
+        mDataBase: DatabaseReference,
+        context: Context,
+        onComplete: (SightsData?) -> Unit
+    ) {
 
-        else -> null
+        mDataBase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val name = snapshot.child("name").value as? String
+                    val imageUrl = snapshot.child("imageUrl").value as? String
+                    val city = snapshot.child("upper_class").value as? String
+                    val info = snapshot.child("info").value as? String
+                    val price = snapshot.child("price").getValue(object : GenericTypeIndicator<List<String>>() {})
+                    val attraction = snapshot.child("attraction").value as? String
+                    val near = snapshot.child("near").getValue(object : GenericTypeIndicator<List<String>>() {})
+                    val plan = snapshot.child("plan").value as? String
+
+                    val sight = if (name != null && imageUrl != null && city != null) {
+                        SightsData(
+                            name = name,
+                            imageUrl = imageUrl,
+                            info = info,
+                            price = price,
+                            attraction = attraction,
+                            near = near,
+                            plan = plan,
+                            upper_class = city
+                        )
+                    } else {
+                        null
+                    }
+                    onComplete(sight)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    context,
+                    error.message, Toast.LENGTH_SHORT
+                ).show()
+                onComplete(null)
+            }
+
+        })
     }
-}
+
+    inline fun <reified T> createItem(
+        name: String,
+        imageUrl: String,
+        upperClass: String
+    ): T? {
+        return when (T::class) {
+            CityData::class -> CityData(name, imageUrl, upperClass) as? T
+            FoodData::class -> FoodData(name, imageUrl, upperClass) as? T
+            SightsData::class -> SightsData(name, imageUrl, upperClass) as? T
+
+            else -> null
+        }
+    }
 
 

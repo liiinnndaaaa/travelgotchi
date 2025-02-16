@@ -18,7 +18,7 @@ class CountryActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
 
     private lateinit var countryName: String
-    private lateinit var countryThumb: String
+    private lateinit var countryImage: String
     private lateinit var citiesAdapter: CitiesAdapter
     private lateinit var foodAdapter: FoodAdapter
     private lateinit var countryGeo: String
@@ -49,7 +49,7 @@ class CountryActivity : AppCompatActivity() {
 
     private fun setInformationInViews() {
         Glide.with(this)
-            .load(countryThumb)
+            .load(countryImage)
             .into(binding.imgCountryDetail)
 
         binding.collapsingToolbar.title = countryName
@@ -79,7 +79,7 @@ class CountryActivity : AppCompatActivity() {
         val databaseFood = FirebaseDatabase.getInstance().getReference("food")
 
         countryName = intent.getStringExtra(CountriesAdapter.COUNTRY_NAME)!!
-        countryThumb = intent.getStringExtra(CountriesAdapter.COUNTRY_THUMB)!!
+        countryImage = intent.getStringExtra(CountriesAdapter.COUNTRY_IMAGE)!!
 
         getShortData(databaseCities, this, countryName) { cityList ->
             citiesAdapter.updateData(cityList)
